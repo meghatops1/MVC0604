@@ -12,6 +12,7 @@
 <div class="container mt-3">
   <h2>Basic Table</h2>
   <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>            
+  <a href="<?php echo $this->baseurl.'create'?>" class="btn btn-primary">Add New</a>
   <table class="table">
     <thead>
       <tr>
@@ -26,6 +27,9 @@
             <tr>
                 <td><?php echo $key->name?></td>
                 <td><?php echo $key->email?></td>
+                <td><a href="<?php echo $this->baseurl;?>delete?id=<?php echo $key->userid?>" class="btn btn-danger">Delete</a></td>
+                <td><a href="<?php echo $this->baseurl;?>edit?id=<?php echo $key->userid?>" 
+                class="btn btn-success">Edit</a></td>
             </tr>
 
             <?php

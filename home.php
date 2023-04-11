@@ -13,6 +13,12 @@ if(isset($_SERVER['PATH_INFO'])){
         case '/index':
             $controller->index();
         break;    
+        case '/delete':
+            $controller->delete();
+        break;    
+        case '/edit':
+            $controller->edit();
+        break;    
         default:
           echo "PAGE NOT FOUND";
           break;
