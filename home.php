@@ -19,6 +19,16 @@ if(isset($_SERVER['PATH_INFO'])){
         case '/edit':
             $controller->edit();
         break;    
+        case '/countryapi':
+            $controller->countryAdd();
+        break;    
+        case '/userapi':
+            $controller->userapidata();
+        break;    
+        case '/userget':
+            $controller->userget();
+        break;    
+
         default:
           echo "PAGE NOT FOUND";
           break;

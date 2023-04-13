@@ -18,7 +18,7 @@ class Model{
         $values=array_values($insertarray);
         $valstr=implode("','",$values);
         //insert into table(col1,col2)values('val1','val2');
-        echo $query="insert into $table($keystr)values('$valstr')";
+        $query="insert into $table($keystr)values('$valstr')";
         $this->connection->query($query);
     }
 

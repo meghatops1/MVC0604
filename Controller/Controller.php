@@ -5,7 +5,7 @@ class Controller extends Model{
    public $baseurl;
    public function __construct(){
         parent::__construct();
-        echo "controller class";
+        //echo "controller class";
         $this->baseurl="http://localhost/MVC0604/home.php/";
    }
    public function index(){
@@ -55,6 +55,23 @@ class Controller extends Model{
             header("Location:".$this->baseurl."index");
          }   
       }
+   }
+
+   public function countryAdd(){
+      $country= file_get_contents("http://country.io/names.json");
+      $data=  json_decode($country);
+      foreach($data as $key=>$value){
+         $this->insertData("country",["ccode"=>$key,"cname"=>$value]);
+      }
+   }
+
+   public function userapidata(){
+      $users= $this->selectData("users");
+      echo $data= json_encode($users);
+   }
+
+   public function userget(){
+      include('View/userget.php');
    }
 }
 
