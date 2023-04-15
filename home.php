@@ -28,6 +28,12 @@ if(isset($_SERVER['PATH_INFO'])){
         case '/userget':
             $controller->userget();
         break;    
+        case '/insertapi':
+            $controller->createapi();
+        break;    
+        case '/imguploadapi':
+            $controller->imgupload();
+        break;    
 
         default:
           echo "PAGE NOT FOUND";

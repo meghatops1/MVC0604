@@ -35,6 +35,25 @@ class Controller extends Model{
          header("Location:".$this->baseurl."index");
       }
    }
+   public function imgupload(){
+      header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Methods: GET, POST, PUT");
+      header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        
+    $DIR = "uploads/";
+    $httpPost = file_get_contents("php://input");
+    $req = json_decode($httpPost);
+      
+       
+    echo $file_chunks = explode(";base64,", $req->image);
+       
+    $fileType = explode("image/", $file_chunks[0]);
+    $image_type = $fileType[1];
+    $base64Img = base64_decode($file_chunks[1]);
+    
+    $file = $DIR . uniqid() . '.png';
+    file_put_contents($file, $base64Img); 
+   }
 
    public function edit(){
       if(isset($_REQUEST['id'])){
@@ -73,6 +92,28 @@ class Controller extends Model{
    public function userget(){
       include('View/userget.php');
    }
+
+   public function createapi(){
+      if(isset($_REQUEST['name'])){
+        
+            $name=$_REQUEST['name'];
+            $email=$_REQUEST['email'];
+            $password=$_REQUEST['pswd'];
+            $insertarray=[
+               "name"=>$name,
+               "email"=>$email,
+               "pass"=>$password,
+            ];
+            if($this->insertData("users",$insertarray)){
+            echo json_encode(["msg"=>"insert success"]);
+            }
+            else{
+               echo json_encode(["msg"=>"insert fail"]);
+            }
+
+      }
+   }   
+   
 }
 
 

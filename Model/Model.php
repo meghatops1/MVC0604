@@ -19,7 +19,12 @@ class Model{
         $valstr=implode("','",$values);
         //insert into table(col1,col2)values('val1','val2');
         $query="insert into $table($keystr)values('$valstr')";
-        $this->connection->query($query);
+        if($this->connection->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function selectData($table){
